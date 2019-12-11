@@ -10,6 +10,7 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description : 
@@ -17,6 +18,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
  * @Author :    zz
  * @Date :      2019/12/11
  **/
+@Component
 public class HttpServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
