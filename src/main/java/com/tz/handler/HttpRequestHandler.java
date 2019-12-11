@@ -4,6 +4,7 @@ package com.tz.handler;/**
  * @Description:
  **/
 
+import com.tz.parse.RequestParser;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -36,6 +37,9 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
                     HttpVersion.HTTP_1_1,
                     HttpResponseStatus.CONTINUE));
         }
+
+        Map<String, String> parmMap = new RequestParser(req).parse();
+        System.out.println(parmMap);
         // 获取请求的uri
         String uri = req.uri();
         Map<String,String> resMap = new HashMap<>();
