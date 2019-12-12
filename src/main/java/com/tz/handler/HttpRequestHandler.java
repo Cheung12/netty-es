@@ -5,12 +5,16 @@ package com.tz.handler;/**
  **/
 
 import com.tz.parse.RequestParser;
+import com.tz.service.ESService;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import org.apache.log4j.Logger;
+import org.elasticsearch.client.ElasticsearchClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +31,10 @@ import static io.netty.handler.codec.http.HttpUtil.is100ContinueExpected;
  **/
 @Component
 public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+    private static Logger log = Logger.getLogger(HttpRequestHandler.class);
+
+    @Autowired
+    private ESService esService;
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         ctx.flush();
@@ -34,6 +42,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest req) throws Exception {
+
         if (is100ContinueExpected(req)) {
             ctx.write(new DefaultFullHttpResponse(
                     HttpVersion.HTTP_1_1,
@@ -44,9 +53,13 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         System.out.println(parmMap);
         // 获取请求的uri
         String uri = req.uri();
+        //esService.test();
+
+
         Map<String,String> resMap = new HashMap<>();
         resMap.put("method",req.method().name());
         resMap.put("uri",uri);
+
 
         String msg = "<html><head><title>test</title></head><body>你请求uri为：" + uri+"<br>" +
                 "请求类型："+req.method()+"<br> "+

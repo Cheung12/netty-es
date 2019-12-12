@@ -1,8 +1,11 @@
 package com.tz.dto;
 
+import lombok.Data;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@Data
 public class PointDto implements Serializable {
 
     /**
@@ -26,37 +29,7 @@ public class PointDto implements Serializable {
     private Integer direction;
 
 
-    public String getLnglat() {
-        return lnglat;
-    }
 
-    public void setLnglat(String lnglat) {
-        this.lnglat = lnglat;
-    }
-
-    public Date getLocationTime() {
-        return locationTime;
-    }
-
-    public void setLocationTime(Date locationTime) {
-        this.locationTime = locationTime;
-    }
-
-    public Integer getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Integer speed) {
-        this.speed = speed;
-    }
-
-    public Integer getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Integer direction) {
-        this.direction = direction;
-    }
 
     @Override
     public String toString() {

@@ -12,6 +12,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +27,8 @@ import java.net.InetSocketAddress;
  **/
 @Component
 public class HttpServer {
+    private static final Logger logger = LogManager.getLogger(HttpServer.class);
+
     @Autowired
     private HttpServerInitializer httpServerInitializer;
 
@@ -45,7 +49,7 @@ public class HttpServer {
                 .childHandler(httpServerInitializer);
 
         ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
-        System.out.println("------- netty server started up on port : " + port);
+        logger.info("------- netty server started up on port : " + port);
         f.channel().closeFuture().sync();
 
     }
