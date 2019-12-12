@@ -3,7 +3,7 @@ package com.tz.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TimerangDto implements Serializable {
+public class TimeRangeDto implements Serializable {
     /**
      * 里程 单位米
      */
@@ -81,7 +81,7 @@ public class TimerangDto implements Serializable {
 
     @Override
     public String toString() {
-        return "TimerangDto{" +
+        return "TimeRangeDto{" +
                 "mileage=" + mileage +
                 ", duration=" + duration +
                 ", startTimeStr='" + startTimeStr + '\'' +

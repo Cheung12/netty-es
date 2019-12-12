@@ -1,20 +1,28 @@
 package com.tz.dto;
 
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
 import java.io.Serializable;
+import java.lang.annotation.Documented;
 import java.util.Date;
 import java.util.List;
 
+@Document(indexName = "track_idx")
+@Data
 public class TrackDto implements Serializable {
 
+    /**
+     * 轨迹ID
+     */
+
+    private String trackId;
     /**
      * 设备id
      */
     private String terminalId;
-    /**
-     * 轨迹ID
-     */
-    private String trackId;
-
     /**
      * 上传时间
      */
@@ -33,53 +41,7 @@ public class TrackDto implements Serializable {
      */
     private Long duration;
 
-    public String getTerminalId() {
-        return terminalId;
-    }
 
-    public void setTerminalId(String terminalId) {
-        this.terminalId = terminalId;
-    }
-
-    public String getTrackId() {
-        return trackId;
-    }
-
-    public void setTrackId(String trackId) {
-        this.trackId = trackId;
-    }
-
-    public Date getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(Date uploadTime) {
-        this.uploadTime = uploadTime;
-    }
-
-    public List<PointDto> getPoints() {
-        return points;
-    }
-
-    public void setPoints(List<PointDto> points) {
-        this.points = points;
-    }
-
-    public Long getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(Long mileage) {
-        this.mileage = mileage;
-    }
-
-    public Long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Long duration) {
-        this.duration = duration;
-    }
 
     @Override
     public String toString() {

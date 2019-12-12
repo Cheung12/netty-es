@@ -5,11 +5,11 @@ package com.tz;/**
  **/
 
 import com.tz.server.HttpServer;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 /**
  * @Description : 启动服务器
@@ -18,15 +18,19 @@ import org.springframework.context.annotation.Configuration;
  * @Date :      2019/12/11
  **/
 @ComponentScan("com.tz")
+@PropertySource("classpath:/log4j2.properties")
 @Configuration
 public class StartServer {
+    private static final Logger logger = LogManager.getLogger(StartServer.class);
+
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx= new AnnotationConfigApplicationContext(StartServer.class);
-        System.out.println("Spring容器启动");
+        BasicConfigurator.configure();
+        logger.info("Spring容器启动");
         String[] beans=ctx.getBeanDefinitionNames();
-        System.out.println("已加载的组件:");
+        logger.info("已加载的组件:");
         for(String name:beans){
-            System.out.println(name);
+            logger.info(name);
         }
 
         HttpServer server= (HttpServer) ctx.getBean("httpServer");
