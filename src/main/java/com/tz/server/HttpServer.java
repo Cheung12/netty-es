@@ -45,7 +45,7 @@ public class HttpServer {
                 .childHandler(httpServerInitializer);
 
         ChannelFuture f = bootstrap.bind(new InetSocketAddress(port)).sync();
-        System.out.println(" server start up on port : " + port);
+        System.out.println("------- netty server started up on port : " + port);
         f.channel().closeFuture().sync();
 
     }

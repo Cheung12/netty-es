@@ -11,6 +11,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +25,7 @@ import static io.netty.handler.codec.http.HttpUtil.is100ContinueExpected;
  * @Author :    zz
  * @Date :      2019/12/11
  **/
-
+@Component
 public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
