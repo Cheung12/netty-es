@@ -5,7 +5,19 @@ import java.io.Serializable;
 import java.util.Date;
 @Data
 public class PointDto implements Serializable {
-
+    /**
+     * id
+     *
+     **/
+    private long id;
+    /**
+     * 轨迹ID
+     */
+    private String trackId;
+    /**
+     * 设备ID
+     **/
+    private String terminalId;
     /**
      * 经纬度
      */

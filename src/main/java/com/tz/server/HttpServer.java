@@ -1,10 +1,10 @@
-package com.tz.server;/**
+package com.tz.server;
+
+/**
  * @Author: zz
  * @Date: 2019-12-11  9:56
  * @Description:
  **/
-
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -15,6 +15,8 @@ import io.netty.handler.logging.LoggingHandler;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.net.InetSocketAddress;
@@ -32,8 +34,7 @@ public class HttpServer {
     @Autowired
     private HttpServerInitializer httpServerInitializer;
 
-
-    int port ;
+    private int port ;
 
     public HttpServer(int port){
         this.port = port;

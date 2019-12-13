@@ -8,6 +8,7 @@ import com.tz.server.HttpServer;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 
@@ -18,11 +19,13 @@ import org.springframework.context.annotation.*;
  * @Date :      2019/12/11
  **/
 @ComponentScan("com.tz")
-@PropertySource("classpath:/log4j2.properties")
+@PropertySource(value = {"classpath:log4j2.properties","classpath:netty.properties"})
+
 @Configuration
 public class StartServer {
     private static final Logger logger = LogManager.getLogger(StartServer.class);
-
+    @Value("${http.port}")
+    private int port;
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx= new AnnotationConfigApplicationContext(StartServer.class);
         BasicConfigurator.configure();
@@ -38,6 +41,6 @@ public class StartServer {
     }
     @Bean
     public HttpServer httpServer(){
-        return new HttpServer(8088);
+        return new HttpServer(port);
     }
 }
