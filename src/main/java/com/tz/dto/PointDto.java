@@ -1,8 +1,6 @@
 package com.tz.dto;
 
 import lombok.Data;
-import org.springframework.data.elasticsearch.annotations.Document;
-
 import java.io.Serializable;
 import java.util.Date;
 @Data

@@ -8,5 +8,5 @@ import java.io.IOException;
  * @Description:
  **/
 public interface ESService {
-    void addTest();
+    void addTest() throws IOException;
 }
